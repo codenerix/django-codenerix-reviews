@@ -14,8 +14,8 @@ from codenerix_products.models import ProductFinal
 # El cliente podrá opinar SOLO sobre productos que haya comprado
 class Reviews(CodenerixModel):
     # pasar a person
-    customer = models.ForeignKey(Customer, related_name='reviews', verbose_name=_("Customer"))
-    product = models.ForeignKey(ProductFinal, related_name='reviews', verbose_name=_("Product"))
+    customer = models.ForeignKey(Customer, related_name='reviews', verbose_name=_("Customer"), on_delete=models.CASCADE)
+    product = models.ForeignKey(ProductFinal, related_name='reviews', verbose_name=_("Product"), on_delete=models.CASCADE)
     stars = models.SmallIntegerField(_("Stars"), validators=[MaxValueValidator(10), MinValueValidator(0)], blank=False, null=False)
     reviews = models.TextField(_("Reviews"), blank=False, null=False)
     validate = models.BooleanField(_("Validate"), blank=True, null=False, default=False)
