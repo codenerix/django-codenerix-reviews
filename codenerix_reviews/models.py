@@ -3,8 +3,8 @@ from django.conf import settings
 from django.db import models
 from codenerix.models import CodenerixModel
 from django.core.validators import MaxValueValidator, MinValueValidator
-from django.utils.encoding import smart_text
-from django.utils.translation import ugettext_lazy as _
+from django.utils.encoding import smart_str
+from django.utils.translation import gettext_lazy as _
 
 from codenerix_invoicing.models_sales import Customer
 from codenerix_products.models import ProductFinal
@@ -23,7 +23,7 @@ class Reviews(CodenerixModel):
     lang = models.CharField(_("Language"), max_length=2, choices=settings.LANGUAGES, blank=False, null=False)
 
     def __unicode__(self):
-        return u"{} ({})".format(smart_text(self.product), smart_text(self.stars))
+        return u"{} ({})".format(smart_str(self.product), smart_str(self.stars))
 
     def __fields__(self, info):
         fields = []
